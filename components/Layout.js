@@ -14,16 +14,14 @@ export default function Layout({ children }) {
           rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+        />
         <script src="https://js.stripe.com/v3" />
       </Head>
       <header>
-        <style jsx>
-          {`
-            a {
-              color: white;
-            }
-          `}
-        </style>
         <Nav className="navbar navbar-dark bg-dark">
           <NavItem>
             <Link href="/">

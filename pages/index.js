@@ -20,17 +20,10 @@ export default function Home() {
               />
             </InputGroup>
           </div>
-          <RestaurantList search={query} />
         </Col>
       </Row>
-      <style jsx>
-        {`
-          .search {
-            margin: 20px;
-            width: 500px;
-          }
-        `}
-      </style>
+
+      <RestaurantList search={query} />
     </div>
   );
 }

@@ -41,12 +41,14 @@ function RestaurantList(props) {
       return (
         <Row>
           {searchQuery.map((item) => (
-            <Col xs="6" sm="4" key={item.id}>
-              <Card>
+            <Col xs="12" sm="6" md="4" key={item.id}>
+              <Card style={{ margin: "0 0.5rem 20px 0.5rem" }}>
                 <CardImg
+                  top={true}
+                  style={{ height: 250 }}
                   src={`${process.env.NEXT_PUBLIC_API_URL}${item.image.url}`}
                 />
-                <CardBody>
+                <CardBody style={{ height: 180, overflow: "hidden" }}>
                   <CardTitle>{item.name}</CardTitle>
                   <CardText>{item.description}</CardText>
                 </CardBody>
@@ -63,27 +65,6 @@ function RestaurantList(props) {
               </Card>
             </Col>
           ))}
-          <style jsx global>
-            {`
-              a {
-                color: white;
-              }
-              a:link {
-                text-decoration: none;
-                color: white;
-              }
-              a:hover {
-                color: orange;
-              }
-              .card-columns {
-                column-count: 3;
-              }
-              img {
-                width: 100%;
-                object-fit: cover;
-              }
-            `}
-          </style>
         </Row>
       );
     } else {
