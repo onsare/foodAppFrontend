@@ -31,7 +31,7 @@ const QUERY = gql`
 function RestaurantList(props) {
   const { loading, error, data } = useQuery(QUERY);
   if (error) return "Error loading restaurants";
-  if (loading) return <h2>Loading</h2>;
+  if (loading) return <h2>Loading...</h2>;
   if (data.restaurants && data.restaurants.length) {
     //search query
     const searchQuery = data.restaurants.filter((query) => {
@@ -58,7 +58,7 @@ function RestaurantList(props) {
                     href={`/restaurants?id=${item.id}`}
                   >
                     <a>
-                      <Button color="primary">View</Button>
+                      <Button>View</Button>
                     </a>
                   </Link>
                 </CardFooter>

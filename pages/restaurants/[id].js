@@ -1,20 +1,10 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
-import {
-  Row,
-  Col,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardFooter,
-  CardBody,
-  CardText,
-  CardImg,
-  Button,
-} from "reactstrap";
+import { Row, Col, Card, CardHeader, CardBody, CardImg } from "reactstrap";
 
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
+import Cart from "../../components/cart";
+import DishesList from "../../components/DishesList";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -51,50 +41,29 @@ function Restaurants(props) {
     const { restaurant } = data;
 
     return (
-      <div>
-        <Row>
-          <Col md="10">
-            <Card>
-              <CardHeader>
-                <h1>{restaurant.name}</h1>
-                <p>{restaurant.description}</p>
-              </CardHeader>
-              <CardImg
-                style={{ height: 150, objectFit: "cover" }}
-                src={`${API_URL}${restaurant.image.url}`}
-              />
+      <Row>
+        <Col md="9">
+          <Card style={{ boxShadow: "none" }}>
+            <CardHeader>
+              <h1>{restaurant.name}</h1>
+              <p>{restaurant.description}</p>
+            </CardHeader>
+            <CardImg
+              style={{ height: 150, objectFit: "cover" }}
+              src={`${API_URL}${restaurant.image.url}`}
+            />
 
-              <CardBody>
-                <h2>Dishes</h2>
-                <Row>
-                  {restaurant.dishes.length > 0 ? (
-                    restaurant.dishes.map((item) => (
-                      <Col xs="12" sm="6" md="4">
-                        <Card key={item.id}>
-                          <CardImg src={`${API_URL}${item.image.url}`} />
-                          <CardBody>
-                            <CardTitle>{item.name}</CardTitle>
-                            <CardText>{item.description}</CardText>
-                          </CardBody>
-                          <CardFooter>
-                            <Button>Add To Cart</Button>
-                          </CardFooter>
-                        </Card>
-                      </Col>
-                    ))
-                  ) : (
-                    <Col>
-                      <CardText>
-                        No dishes available in this restaurant yet
-                      </CardText>
-                    </Col>
-                  )}
-                </Row>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-      </div>
+            <CardBody>
+              <h2>Dishes</h2>
+
+              <DishesList data={restaurant} />
+            </CardBody>
+          </Card>
+        </Col>
+        <Col md="3">
+          <Cart />
+        </Col>
+      </Row>
     );
   }
 }
